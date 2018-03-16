@@ -7,17 +7,23 @@ module.exports = {
   collectInternalLinks: (baseUrl, $) => new Promise((s,f) => {
     let links = [];
 
-    let relativeLinks = $("a[href^='/']");
-    relativeLinks.each(function() {
-        if ($(this).attr('href').startsWith('//'))
-          links.push('http:' + $(this).attr('href'));
-        else
-          links.push(baseUrl + $(this).attr('href'));
-    });
+    let hrefs = $("a[href]");
 
-    let absoluteLinks = $("a[href^='http']");
-    absoluteLinks.each(function() {
-        links.push($(this).attr('href'));
+    hrefs.each(function() {
+      let href = $(this).attr('href');
+
+      let reg = new RegExp('^https?.*');
+      let reg2 = new RegExp('^\/\/.*');
+      let reg3 = new RegExp('^\/[^\/]*');
+
+      if (href.match(reg))
+        links.push(href);
+      else if (href.match(reg2))
+        links.push('http' + href);
+      else if (href.match(reg3))
+        links.push(baseUrl + href);
+      else
+        links.push(baseUrl + '/' + href);
     });
 
     s(links);
