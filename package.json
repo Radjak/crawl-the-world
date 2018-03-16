@@ -1,0 +1,14 @@
+{
+  "name": "crawl-the-world",
+  "version": "1.0.0",
+  "description": "crawl the web for get data",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "Radjak",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "crawler": "^1.1.2"
+  }
+}
