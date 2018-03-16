@@ -1,5 +1,6 @@
 const Crawler = require("crawler");
 const tools = require("./tools");
+const logger = require("./logger");
 
 let c = new Crawler({
     maxConnections : 10,
@@ -16,6 +17,7 @@ let c = new Crawler({
 
 const whenError = (error) => {
   console.log(error);
+  logger.writeCrawlerError(error);
 };
 
 const whenCrawl = (res) => {
@@ -31,6 +33,7 @@ const whenCrawl = (res) => {
 
 c.on('request', function (options) {
     console.log('Call: ' + options.uri);
+    logger.writeUriCall(options.uri);
 });
 
 c.queue('https://www.google.fr/search?q=nutrition');
