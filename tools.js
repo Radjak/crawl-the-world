@@ -28,4 +28,7 @@ module.exports = {
 
     s(links);
   }),
+  checkDOM: ($, search) => new Promise((s,f) => {
+    s();
+  }),
 };

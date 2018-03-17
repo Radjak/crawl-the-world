@@ -9,6 +9,8 @@
   "author": "Radjak",
   "license": "GPL-3.0",
   "dependencies": {
-    "crawler": "^1.1.2"
+    "crawler": "^1.1.2",
+    "mongodb": "^3.0.4",
+    "npm": "^5.7.1"
   }
 }

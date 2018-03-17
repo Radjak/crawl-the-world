@@ -27,12 +27,16 @@ const formatNumber = (n) => {
 
 module.exports = {
   writeUriCall: (uri) => {
+    console.log('Call: ', uri);
+
     let file = './log/call/call_' + getDate() + '.txt';
     let data = '[' + getDateTime() + '] Call: ' + uri + '\n';
 
     logData(file, data);
   },
   writeCrawlerError: (err) => {
+    console.log(err);
+
     let file = './log/error/error_' + getDate() + '.txt';
     let data = '[' + getDateTime() + '] ' + err + '\n';
 
