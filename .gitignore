@@ -1,6 +1,5 @@
 node_modules
 package-lock.json
-.jshintrc
 log/call/*
 !log/call/.keep
 log/error/*

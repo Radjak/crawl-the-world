@@ -1,5 +1,6 @@
 const Crawler = require("crawler");
 const tools = require("./tools");
+const extract = require("./extract");
 const logger = require("./logger");
 const MongoDb = require("./db");
 
@@ -25,14 +26,14 @@ const whenError = (error) => {
 const whenCrawl = (res) => {
   let $ = res.$;
 
-  const search = ['nutrition', 'musuclation'];
+  const keywords = ['nutrition', 'musuclation'];
 
-  tools.checkDOM($, search)
-    .then((data) => {
-
+  extract(db, res.options.uri, $, keywords)
+    .catch((err) => {
+      logger.writeCrawlerError(err);
     });
 
-  tools.collectInternalLinks(tools.getBaseUrl(res.options.uri), $)
+  tools.collectInternalLinks($, tools.getBaseUrl(res.options.uri))
     .then((links) => {
       links.forEach((link) => {
         db.callOrNo(link, 'call')

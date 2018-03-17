@@ -4,9 +4,9 @@ module.exports = {
     let baseUrl = uri.match(reg);
     return baseUrl[1];
   },
-  collectInternalLinks: (baseUrl, $) => new Promise((s,f) => {
+  collectInternalLinks: ($, baseUrl) => new Promise((s,f) => {
     let links = [];
-
+    
     let hrefs = $("a[href]");
 
     hrefs.each(function() {
@@ -27,8 +27,5 @@ module.exports = {
     });
 
     s(links);
-  }),
-  checkDOM: ($, search) => new Promise((s,f) => {
-    s();
   }),
 };
